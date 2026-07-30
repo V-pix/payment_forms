@@ -1,43 +1,58 @@
 import os
 from decimal import Decimal
-
 import stripe
-from cart.cart import Cart
+
+from django.db import transaction
+from django.contrib import messages
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_http_methods
 from django.urls import reverse
 from dotenv import find_dotenv, load_dotenv
 
+from cart.cart import Cart
 from .forms import OrderCreateForm
-from .models import Order, OrderItem
+from .models import Order, OrderItem, OrderStatus
 
 load_dotenv(find_dotenv())
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 
-def order_create(request):
+@require_http_methods(["GET", "POST"])
+def order_create(request: HttpRequest) -> HttpResponse:
     cart = Cart(request)
+    if not cart:
+        messages.info(request, "Корзина пуста")
+        return redirect("items:list")
     if request.method == "POST":
         form = OrderCreateForm(request.POST)
         if form.is_valid():
-            order = form.save()
-            for items in cart:
-                OrderItem.objects.create(
-                    order=order,
-                    item=items["item"],
-                    price=items["price"],
-                    quantity=items["quantity"],
+            with transaction.atomic():
+                order = form.save(commit=False)
+                order.currency = cart.currency
+                order.save()
+                OrderItem.objects.bulk_create(
+                    [
+                        OrderItem(
+                            order=order,
+                            item=cart_line["item"],
+                            price=cart_line["price"],
+                            quantity=cart_line["quantity"],
+                        )
+                        for cart_line in cart
+                    ]
                 )
             cart.clear()
             request.session["order_id"] = order.id
-            return redirect(reverse("orders:process"))
+            return redirect("orders:process")
     else:
         form = OrderCreateForm()
     return render(request, "orders/create.html", {"cart": cart, "form": form})
 
 
-def payment_process(request):
-    order_id = request.session.get("order_id", None)
-    order = get_object_or_404(Order, id=order_id)
+require_http_methods(["GET", "POST"])
+def payment_process(request: HttpRequest) -> HttpResponse:
+    order = get_object_or_404(Order, pk=request.session.get("order_id", None))
     if request.method == "POST":
         success_url = request.build_absolute_uri(reverse("orders:completed"))
         cancel_url = request.build_absolute_uri(reverse("orders:canceled"))
@@ -67,9 +82,14 @@ def payment_process(request):
         return render(request, "orders/process.html", locals())
 
 
-def payment_completed(request):
-    return render(request, "orders/completed.html")
+def payment_completed(request: HttpRequest) -> HttpResponse:
+    order = Order.objects.filter(pk=request.session.get("order_id")).first()
+    return render(request, "orders/completed.html", {"order": order})
 
 
-def payment_canceled(request):
-    return render(request, "orders/canceled.html")
+def payment_canceled(request: HttpRequest) -> HttpResponse:
+    order = Order.objects.filter(pk=request.session.get("order_id")).first()
+    if order and order.status == OrderStatus.CREATED:
+        order.status = OrderStatus.CANCELED
+        order.save(update_fields=["status", "updated_at"])
+    return render(request, "orders/canceled.html", {"order": order})

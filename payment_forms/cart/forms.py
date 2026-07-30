@@ -11,3 +11,8 @@ class CartAddProductForm(forms.Form):
     override = forms.BooleanField(
         required=False, initial=False, widget=forms.HiddenInput
     )
+
+
+class CartAddItemForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1, max_value=20, initial=1, label="Количество")
+    override = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)

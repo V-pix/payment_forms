@@ -1,20 +1,25 @@
 {% load static %}
-   <!DOCTYPE html>
-   <html>
-     <head>
-       <meta charset="utf-8" />
-       <title>{% block title %}Shop{% endblock %}</title>
-       <link href="{% static "css/base.css" %}" rel="stylesheet">
-     </head>
-     <body>
-       <div id="header">
-         <a href="/" class="logo">Shop</a>
-       </div>
-       <div id="subheader">
-       </div>
-       <div id="content">
-         {% block content %}
-         {% endblock %}
-       </div>
-     </body>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Shop{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+       {% comment %} <link href="{% static "css/base.css" %}" rel="stylesheet"> {% endcomment %}
+</head>
+  <body>
+    <div id="header">
+      <a href="{% url 'items:item_list' %}" class="logo">
+            Shop
+        </a>
+      {% comment %} <a href="/" class="logo">Shop</a> {% endcomment %}
+    </div>
+    <div id="subheader">
+    </div>
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+</body>
 </html>

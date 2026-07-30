@@ -1,9 +1,10 @@
 import os
 
 import stripe
-from cart.forms import CartAddProductForm
-from django.http import JsonResponse
+from cart.forms import CartAddProductForm, CartAddItemForm
+from django.http import HttpRequest, JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from dotenv import find_dotenv, load_dotenv
@@ -50,7 +51,6 @@ class BuyItemView(TemplateView):
 
     def get_context_data(self, **kwargs):
         item_id = self.kwargs["pk"]
-        print(item_id)
         item = Item.objects.get(id=item_id)
         context = super(BuyItemView, self).get_context_data(**kwargs)
         context.update(
@@ -70,16 +70,25 @@ class CancelView(TemplateView):
     template_name = "items/cancel.html"
 
 
-def item_list(request):
-    item = Item.objects.all()
-    return render(request, "items/item_list.html", {"item": item})
+@require_GET
+def item_list(request: HttpRequest):
+    # items = Item.objects.filter(is_active=True)
+    items = Item.objects.all()
+    return render(request, "items/item_list.html", {"items": items})
 
 
-def item_detail(request, pk: int):
-    item = get_object_or_404(Item, id=pk)
+@require_GET
+def item_detail(request: HttpRequest, pk: int):
+    item = get_object_or_404(Item, pk=pk, is_active=True)
     cart_product_form = CartAddProductForm()
     return render(
         request,
         "items/item_detail.html",
-        {"item": item, "cart_product_form": cart_product_form},
+        {
+            "item": item,
+            # "stripe_public_key": StripeCheckoutService.get_public_key(item.currency),
+            # "cart_form": CartAddProductForm(),
+            "cart_product_form": cart_product_form
+        },
     )
+

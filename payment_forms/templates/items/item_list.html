@@ -6,13 +6,15 @@
 {% block content %}
   <div id="main" class="product-list">
     <h1>Items</h1>
-      {% for i in item %}
+      {% for i in items %}
         <div class="item">
           <div class="description">
             <h1>{{ i.name }}</h1>
             <p> {{ i.description }} </p>
-            <p>${{ i.price }}</p>
+            <p>{{ i.price }} {{ item.currency }}</p>
             <a href="{% url 'items:item_detail' i.pk %}">More information</a>
+      {% empty %}
+            <p>Empty</p>
       {% endfor %}
   </div>
 {% endblock %}

@@ -95,7 +95,9 @@
   "fields": {
     "name": "Headphones",
     "description": "The design of its earcups directs sound to the ear at a subtle angle, thereby aiding in a realistic—and realistically stereo—monitoring experience.",
-    "price": "300.00"
+    "price": "300.00",
+    "created_at": "2026-07-27T20:00:00Z",
+    "updated_at": "2026-07-27T20:00:00Z"
   }
 },
 {
@@ -104,7 +106,9 @@
   "fields": {
     "name": "Portable Stereo Bass Column",
     "description": "Portable Bluetooth Speaker,built-in bluetooth wireless transmission, working distance up to 10 meters.",
-    "price": "99.00"
+    "price": "99.00",
+    "created_at": "2026-07-27T20:00:00Z",
+    "updated_at": "2026-07-27T20:00:00Z"
   }
 },
 {
@@ -113,7 +117,9 @@
   "fields": {
     "name": "Watch",
     "description": "A healthy leap ahead.",
-    "price": "399.00"
+    "price": "399.00",
+    "created_at": "2026-07-27T20:00:00Z",
+    "updated_at": "2026-07-27T20:00:00Z"
   }
 },
 {
@@ -122,7 +128,9 @@
   "fields": {
     "name": "TV",
     "description": "An exclusive offer, experience a dazzling TV for less.",
-    "price": "999.00"
+    "price": "999.00",
+    "created_at": "2026-07-27T20:00:00Z",
+    "updated_at": "2026-07-27T20:00:00Z"
   }
 },
 {
@@ -131,7 +139,9 @@
   "fields": {
     "name": "Phone",
     "description": "As amazing as ever.",
-    "price": "599.00"
+    "price": "599.00",
+    "created_at": "2026-07-27T20:00:00Z",
+    "updated_at": "2026-07-27T20:00:00Z"
   }
 },
 {
@@ -144,8 +154,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-21T22:45:38.827Z",
-    "updated": "2022-11-21T22:45:38.827Z",
+    "created_at": "2022-11-21T22:45:38.827Z",
+    "updated_at": "2022-11-21T22:45:38.827Z",
     "paid": false
   }
 },
@@ -159,8 +169,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-21T22:48:19.866Z",
-    "updated": "2022-11-21T22:48:19.866Z",
+    "created_at": "2022-11-21T22:48:19.866Z",
+    "updated_at": "2022-11-21T22:48:19.866Z",
     "paid": false
   }
 },
@@ -174,8 +184,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-21T22:50:25.482Z",
-    "updated": "2022-11-21T22:50:25.482Z",
+    "created_at": "2022-11-21T22:50:25.482Z",
+    "updated_at": "2022-11-21T22:50:25.482Z",
     "paid": false
   }
 },
@@ -189,8 +199,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-21T22:51:26.167Z",
-    "updated": "2022-11-21T22:51:26.167Z",
+    "created_at": "2022-11-21T22:51:26.167Z",
+    "updated_at": "2022-11-21T22:51:26.167Z",
     "paid": false
   }
 },
@@ -204,8 +214,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-21T22:56:23.361Z",
-    "updated": "2022-11-21T22:56:23.361Z",
+    "created_at": "2022-11-21T22:56:23.361Z",
+    "updated_at": "2022-11-21T22:56:23.361Z",
     "paid": false
   }
 },
@@ -219,8 +229,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-21T22:56:54.766Z",
-    "updated": "2022-11-21T22:56:54.766Z",
+    "created_at": "2022-11-21T22:56:54.766Z",
+    "updated_at": "2022-11-21T22:56:54.766Z",
     "paid": false
   }
 },
@@ -234,8 +244,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T18:22:18.442Z",
-    "updated": "2022-11-22T18:22:18.442Z",
+    "created_at": "2022-11-22T18:22:18.442Z",
+    "updated_at": "2022-11-22T18:22:18.442Z",
     "paid": false
   }
 },
@@ -249,8 +259,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T18:24:07.345Z",
-    "updated": "2022-11-22T18:24:07.345Z",
+    "created_at": "2022-11-22T18:24:07.345Z",
+    "updated_at": "2022-11-22T18:24:07.345Z",
     "paid": false
   }
 },
@@ -264,8 +274,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:36:32.786Z",
-    "updated": "2022-11-22T19:36:32.786Z",
+    "created_at": "2022-11-22T19:36:32.786Z",
+    "updated_at": "2022-11-22T19:36:32.786Z",
     "paid": false
   }
 },
@@ -279,8 +289,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:37:05.594Z",
-    "updated": "2022-11-22T19:37:05.594Z",
+    "created_at": "2022-11-22T19:37:05.594Z",
+    "updated_at": "2022-11-22T19:37:05.594Z",
     "paid": false
   }
 },
@@ -294,8 +304,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:39:34.572Z",
-    "updated": "2022-11-22T19:39:34.572Z",
+    "created_at": "2022-11-22T19:39:34.572Z",
+    "updated_at": "2022-11-22T19:39:34.572Z",
     "paid": false
   }
 },
@@ -309,8 +319,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:47:11.910Z",
-    "updated": "2022-11-22T19:47:11.911Z",
+    "created_at": "2022-11-22T19:47:11.910Z",
+    "updated_at": "2022-11-22T19:47:11.911Z",
     "paid": false
   }
 },
@@ -324,8 +334,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:48:53.167Z",
-    "updated": "2022-11-22T19:48:53.167Z",
+    "created_at": "2022-11-22T19:48:53.167Z",
+    "updated_at": "2022-11-22T19:48:53.167Z",
     "paid": false
   }
 },
@@ -339,8 +349,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:56:19.738Z",
-    "updated": "2022-11-22T19:56:19.738Z",
+    "created_at": "2022-11-22T19:56:19.738Z",
+    "updated_at": "2022-11-22T19:56:19.738Z",
     "paid": false
   }
 },
@@ -354,8 +364,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:58:35.438Z",
-    "updated": "2022-11-22T19:58:35.438Z",
+    "created_at": "2022-11-22T19:58:35.438Z",
+    "updated_at": "2022-11-22T19:58:35.438Z",
     "paid": false
   }
 },
@@ -369,8 +379,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:58:44.118Z",
-    "updated": "2022-11-22T19:58:44.118Z",
+    "created_at": "2022-11-22T19:58:44.118Z",
+    "updated_at": "2022-11-22T19:58:44.118Z",
     "paid": false
   }
 },
@@ -384,8 +394,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T19:58:49.430Z",
-    "updated": "2022-11-22T19:58:49.430Z",
+    "created_at": "2022-11-22T19:58:49.430Z",
+    "updated_at": "2022-11-22T19:58:49.430Z",
     "paid": false
   }
 },
@@ -399,8 +409,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T20:01:27.543Z",
-    "updated": "2022-11-22T20:01:27.543Z",
+    "created_at": "2022-11-22T20:01:27.543Z",
+    "updated_at": "2022-11-22T20:01:27.543Z",
     "paid": false
   }
 },
@@ -414,8 +424,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T20:05:19.504Z",
-    "updated": "2022-11-22T20:05:19.504Z",
+    "created_at": "2022-11-22T20:05:19.504Z",
+    "updated_at": "2022-11-22T20:05:19.504Z",
     "paid": false
   }
 },
@@ -429,8 +439,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T20:13:06.824Z",
-    "updated": "2022-11-22T20:13:06.824Z",
+    "created_at": "2022-11-22T20:13:06.824Z",
+    "updated_at": "2022-11-22T20:13:06.824Z",
     "paid": false
   }
 },
@@ -444,8 +454,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T21:04:14.787Z",
-    "updated": "2022-11-22T21:04:14.787Z",
+    "created_at": "2022-11-22T21:04:14.787Z",
+    "updated_at": "2022-11-22T21:04:14.787Z",
     "paid": false
   }
 },
@@ -459,8 +469,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-22T22:09:25.944Z",
-    "updated": "2022-11-22T22:09:25.944Z",
+    "created_at": "2022-11-22T22:09:25.944Z",
+    "updated_at": "2022-11-22T22:09:25.944Z",
     "paid": false
   }
 },
@@ -474,8 +484,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-23T09:28:57.998Z",
-    "updated": "2022-11-23T09:28:57.998Z",
+    "created_at": "2022-11-23T09:28:57.998Z",
+    "updated_at": "2022-11-23T09:28:57.998Z",
     "paid": false
   }
 },
@@ -489,8 +499,8 @@
     "address": "rb",
     "postal_code": "rb",
     "city": "rtb",
-    "created": "2022-11-23T09:36:50.296Z",
-    "updated": "2022-11-23T09:36:50.296Z",
+    "created_at": "2022-11-23T09:36:50.296Z",
+    "updated_at": "2022-11-23T09:36:50.296Z",
     "paid": false
   }
 },
