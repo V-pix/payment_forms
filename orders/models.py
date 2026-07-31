@@ -97,7 +97,13 @@ class OrderItem(models.Model):
         verbose_name_plural = _("Позиции заказа")
 
     def __str__(self) -> str:
-        return {self.id}, {self.order.id}, {self.item.name}, {self.quantity}
+        return f"{self.id}, {self.order.id}, {self.item.name}, {self.quantity}"
 
     def get_cost(self):
         return self.price * self.quantity
+    
+    def save(self, *args, **kwargs) -> None:
+        if self.item_id:
+            if self.price is None:
+                self.price = self.item.price
+        return super().save(*args, **kwargs)

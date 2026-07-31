@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.core.exceptions import ValidationError
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
@@ -10,15 +11,10 @@ from .forms import CartAddProductForm
 
 
 @require_POST
-def cart_add(request, item_id: int):
+def cart_add(request: HttpRequest, item_id: int) -> HttpResponse:
     cart = Cart(request)
     item = get_object_or_404(Item, pk=item_id, is_active=True)
     form = CartAddProductForm(request.POST)
-    print("Добавление товара в корзину")
-    print("item_id=%s", item_id)
-    print("POST=%s", request.POST)
-    print("cart.data до добавления=%s", cart.data)
-    print("session до добавления=%s", dict(request.session))
     if form.is_valid():
         try:
             cart.add(
@@ -32,11 +28,11 @@ def cart_add(request, item_id: int):
 
 
 @require_POST
-def cart_remove(request, item_id: int):
+def cart_remove(request: HttpRequest, item_id: int) -> HttpResponse:
     item = get_object_or_404(Item, pk=item_id)
     Cart(request).remove(item)
-    return redirect("cart:detail")
+    return redirect("cart:cart_detail")
 
 
-def cart_detail(request):
+def cart_detail(request: HttpRequest) -> HttpResponse:
     return render(request, "cart/cart_detail.html", {"cart": Cart(request)})

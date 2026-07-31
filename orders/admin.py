@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib import admin
 
 from .models import Order, OrderItem
@@ -6,6 +8,7 @@ from .models import Order, OrderItem
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ("item",)
+    readonly_fields = ("price",)
 
 
 @admin.register(Order)
@@ -36,13 +39,11 @@ class OrderAdmin(admin.ModelAdmin):
         "city",
         "postal_code",
     )
-    readonly_fields = (
-        "created_at",
-        "updated_at",
-    )
     ordering = ("-created_at",)
     inlines = (OrderItemInline, )
 
     @admin.display(description="Стоимость")
-    def total_cost(self, obj):
+    def total_cost(self, obj: OrderItem) -> Decimal | str:
+        if not obj.pk:
+            return "-"
         return obj.get_total_cost()

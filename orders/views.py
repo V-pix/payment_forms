@@ -8,14 +8,11 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
-from dotenv import find_dotenv, load_dotenv
 
 from cart.cart import Cart
+from services.stripe import create_order_checkout_session
 from .forms import OrderCreateForm
 from .models import Order, OrderItem, OrderStatus
-
-load_dotenv(find_dotenv())
-stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 
 @require_http_methods(["GET", "POST"])
@@ -50,36 +47,25 @@ def order_create(request: HttpRequest) -> HttpResponse:
     return render(request, "orders/create.html", {"cart": cart, "form": form})
 
 
-require_http_methods(["GET", "POST"])
+@require_http_methods(["GET", "POST"])
 def payment_process(request: HttpRequest) -> HttpResponse:
-    order = get_object_or_404(Order, pk=request.session.get("order_id", None))
+    order_id = request.session.get("order_id")
+    if not order_id:
+        return redirect("cart:cart_detail")
+    order = get_object_or_404(Order, pk=order_id)
     if request.method == "POST":
-        success_url = request.build_absolute_uri(reverse("orders:completed"))
-        cancel_url = request.build_absolute_uri(reverse("orders:canceled"))
-        session_data = {
-            "mode": "payment",
-            "client_reference_id": order.id,
-            "success_url": success_url,
-            "cancel_url": cancel_url,
-            "line_items": [],
-        }
-        for item in order.items.all():
-            session_data["line_items"].append(
-                {
-                    "price_data": {
-                        "unit_amount": int(item.price * Decimal("100")),
-                        "currency": "usd",
-                        "product_data": {
-                            "name": item.item.name,
-                        },
-                    },
-                    "quantity": item.quantity,
-                }
+        try:
+            session = create_order_checkout_session(
+                order=order,
+                success_url=request.build_absolute_uri(reverse("orders:completed")),
+                cancel_url=request.build_absolute_uri(reverse("orders:canceled")),
             )
-        session = stripe.checkout.Session.create(**session_data)
-        return redirect(session.url, code=303)
-    else:
-        return render(request, "orders/process.html", locals())
+        except stripe.StripeError:
+            messages.error(request, "Не удалось создать платёжную сессию")
+        else:
+            return redirect(session.url, code=303)
+
+    return render(request, "orders/process.html", {"order": order})
 
 
 def payment_completed(request: HttpRequest) -> HttpResponse:
