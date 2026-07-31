@@ -1,15 +1,14 @@
-import os
-from django.conf import settings
-
 import stripe
-from cart.forms import CartAddProductForm
+from django.conf import settings
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views.decorators.http import require_GET
 from django.views.generic.base import TemplateView
 
+from cart.forms import CartAddProductForm
 from services.stripe import create_item_checkout_session
+
 from .models import Item
 
 
@@ -32,6 +31,7 @@ def create_checkout_session(request: HttpRequest, pk: int) -> JsonResponse:
 
 class BuyItemView(TemplateView):
     template_name = "items/item.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["item"] = get_object_or_404(
@@ -64,9 +64,5 @@ def item_detail(request: HttpRequest, pk: int):
     return render(
         request,
         "items/item_detail.html",
-        {
-            "item": item,
-            "cart_product_form": cart_product_form
-        },
+        {"item": item, "cart_product_form": cart_product_form},
     )
-

@@ -20,7 +20,7 @@ def cart_add(request: HttpRequest, item_id: int) -> HttpResponse:
             cart.add(
                 item=item,
                 quantity=form.cleaned_data["quantity"],
-                override=form.cleaned_data["override"]
+                override=form.cleaned_data["override"],
             )
         except ValidationError as exc:
             messages.error(request, exc.message)

@@ -1,16 +1,14 @@
-import os
-from decimal import Decimal
 import stripe
-
-from django.db import transaction
 from django.contrib import messages
+from django.db import transaction
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.http import require_http_methods
 from django.urls import reverse
+from django.views.decorators.http import require_http_methods
 
 from cart.cart import Cart
 from services.stripe import create_order_checkout_session
+
 from .forms import OrderCreateForm
 from .models import Order, OrderItem, OrderStatus
 
@@ -57,8 +55,12 @@ def payment_process(request: HttpRequest) -> HttpResponse:
         try:
             session = create_order_checkout_session(
                 order=order,
-                success_url=request.build_absolute_uri(reverse("orders:completed")),
-                cancel_url=request.build_absolute_uri(reverse("orders:canceled")),
+                success_url=request.build_absolute_uri(
+                    reverse("orders:completed")
+                ),
+                cancel_url=request.build_absolute_uri(
+                    reverse("orders:canceled")
+                ),
             )
         except stripe.StripeError:
             messages.error(request, "Не удалось создать платёжную сессию")

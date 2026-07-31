@@ -89,9 +89,11 @@ class OrderItem(models.Model):
         on_delete=models.PROTECT
     )
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
+    quantity = models.PositiveIntegerField(
+        default=1,
+        validators=[MinValueValidator(1)]
+    )
 
-    
     class Meta:
         verbose_name = _("Позиция заказа")
         verbose_name_plural = _("Позиции заказа")
@@ -101,7 +103,7 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
-    
+
     def save(self, *args, **kwargs) -> None:
         if self.item_id:
             if self.price is None:

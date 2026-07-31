@@ -48,7 +48,7 @@ class Item(models.Model):
         auto_now=True,
         verbose_name=_("Дата обновления"),
     )
-    
+
     class Meta:
         db_table = "items"
         ordering = ("-created_at",)
@@ -57,4 +57,3 @@ class Item(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name} ({self.price} {self.currency})"
-

@@ -40,7 +40,7 @@ class OrderAdmin(admin.ModelAdmin):
         "postal_code",
     )
     ordering = ("-created_at",)
-    inlines = (OrderItemInline, )
+    inlines = (OrderItemInline,)
 
     @admin.display(description="Стоимость")
     def total_cost(self, obj: OrderItem) -> Decimal | str:

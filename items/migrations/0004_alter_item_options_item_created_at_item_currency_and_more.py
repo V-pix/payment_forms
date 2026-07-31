@@ -7,42 +7,64 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('items', '0003_delete_order'),
+        ("items", "0003_delete_order"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='item',
-            options={'ordering': ('-created_at',), 'verbose_name': 'Товар', 'verbose_name_plural': 'Товары'},
+            name="item",
+            options={
+                "ordering": ("-created_at",),
+                "verbose_name": "Товар",
+                "verbose_name_plural": "Товары",
+            },
         ),
         migrations.AddField(
-            model_name='item',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, db_index=True, default=django.utils.timezone.now, verbose_name='Дата создания'),
+            model_name="item",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                db_index=True,
+                default=django.utils.timezone.now,
+                verbose_name="Дата создания",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='item',
-            name='currency',
-            field=models.CharField(choices=[('USD', 'US Dollar'), ('EUR', 'Euro')], default='USD', help_text='Выберите валюту', max_length=3, verbose_name='Валюта'),
+            model_name="item",
+            name="currency",
+            field=models.CharField(
+                choices=[("USD", "US Dollar"), ("EUR", "Euro")],
+                default="USD",
+                help_text="Выберите валюту",
+                max_length=3,
+                verbose_name="Валюта",
+            ),
         ),
         migrations.AddField(
-            model_name='item',
-            name='is_active',
-            field=models.BooleanField(db_index=True, default=True, help_text='Определяет, доступен ли товар для покупки', verbose_name='Активен'),
+            model_name="item",
+            name="is_active",
+            field=models.BooleanField(
+                db_index=True,
+                default=True,
+                help_text="Определяет, доступен ли товар для покупки",
+                verbose_name="Активен",
+            ),
         ),
         migrations.AddField(
-            model_name='item',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='Дата обновления'),
+            model_name="item",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="Дата обновления"),
         ),
         migrations.AlterField(
-            model_name='item',
-            name='description',
-            field=models.TextField(help_text='Введите описание товара', verbose_name='Описание товара'),
+            model_name="item",
+            name="description",
+            field=models.TextField(
+                help_text="Введите описание товара", verbose_name="Описание товара"
+            ),
         ),
         migrations.AlterModelTable(
-            name='item',
-            table='items',
+            name="item",
+            table="items",
         ),
     ]

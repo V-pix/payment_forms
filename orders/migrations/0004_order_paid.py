@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('orders', '0003_alter_order_options_remove_order_created_and_more'),
+        ("orders", "0003_alter_order_options_remove_order_created_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='paid',
+            model_name="order",
+            name="paid",
             field=models.BooleanField(default=False),
         ),
     ]

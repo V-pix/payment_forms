@@ -8,27 +8,37 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('items', '0004_alter_item_options_item_created_at_item_currency_and_more'),
-        ('orders', '0004_order_paid'),
+        ("items", "0004_alter_item_options_item_created_at_item_currency_and_more"),
+        ("orders", "0004_order_paid"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='orderitem',
-            options={'verbose_name': 'Позиция заказа', 'verbose_name_plural': 'Позиции заказа'},
+            name="orderitem",
+            options={
+                "verbose_name": "Позиция заказа",
+                "verbose_name_plural": "Позиции заказа",
+            },
         ),
         migrations.AlterField(
-            model_name='orderitem',
-            name='item',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='order_items', to='items.item'),
+            model_name="orderitem",
+            name="item",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="order_items",
+                to="items.item",
+            ),
         ),
         migrations.AlterField(
-            model_name='orderitem',
-            name='quantity',
-            field=models.PositiveIntegerField(default=1, validators=[django.core.validators.MinValueValidator(1)]),
+            model_name="orderitem",
+            name="quantity",
+            field=models.PositiveIntegerField(
+                default=1,
+                validators=[django.core.validators.MinValueValidator(1)]
+            ),
         ),
         migrations.AlterModelTable(
-            name='order',
+            name="order",
             table=None,
         ),
     ]

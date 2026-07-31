@@ -51,9 +51,7 @@ def create_order_checkout_session(
                 "product_data": {
                     "name": order_item.item.name,
                 },
-                "unit_amount": int(
-                    order_item.price * Decimal("100")
-                ),
+                "unit_amount": int(order_item.price * Decimal("100")),
             },
             "quantity": order_item.quantity,
         }
