@@ -1,11 +1,9 @@
-version: '3.10'
-
 services:
   web:
     build: .
     restart: always
     volumes:
-     - .:/payment_forms
+     - .:/app
     ports:
      - "8000:8000"
     env_file:

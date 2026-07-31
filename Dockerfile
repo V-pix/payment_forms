@@ -1,17 +1,16 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED 1
 
-RUN pip3 install --upgrade pip
-
 COPY requirements.txt .
 
-COPY dump.json .
+RUN python -m pip install --upgrade pip \
+    && python -m pip install --no-cache-dir -r requirements.txt
 
-RUN pip3 install -r /app/requirements.txt --no-cache-dir
+COPY . .
 
-COPY payment_forms/ .
+EXPOSE 8000
 
-CMD ["python3", "manage.py", "runserver", "0:8000"] 
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"] 
